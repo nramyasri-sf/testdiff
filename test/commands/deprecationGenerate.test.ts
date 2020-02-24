@@ -4,16 +4,20 @@ import * as fs from 'fs';
 import * as sinon from 'sinon';
 
 const sandbox = sinon.createSandbox();
+const writeFileStub = sandbox.stub(fs, 'writeFileSync');
 
 describe('deprecation:generate', () => {
-    test.
-    command(['deprecation:generate'])
-        .it('should create a gold file', ctx => {
-            const writeFileStub = sandbox.stub(fs, 'writeFile');
-           // tslint:disable-next-line:no-unused-expression
-            expect(writeFileStub.calledOnce).to.be.true;
-            // tslint:disable-next-line:no-unused-expression
-            expect(writeFileStub.calledWith('command-gold-file.json')).to.be.true;
-        });
-    sandbox.restore();
+
+    afterEach(() => {
+        sandbox.restore()
+    });
+     
+    test
+    .stdout()
+    .command(['deprecation:generate'])
+    .it('runs hello', ctx => {
+      expect(writeFileStub.calledOnce).to.be.true; 
+      expect(writeFileStub.calledWith('command-gold-file.json')).to.be.true;
+      expect(ctx.stdout).to.contain('File has been saved.')
+    });
 });

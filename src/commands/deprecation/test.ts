@@ -3,6 +3,12 @@ import { Command, flags } from '@oclif/command';
 import * as fs from 'fs';
 import * as _ from 'lodash';
 
+interface CommandArray {
+    flags: string[];
+    command: string
+}
+
+
 export default class Test extends Command {
 
     public static flags = {
@@ -14,10 +20,9 @@ export default class Test extends Command {
      * @param updatedCommands new list of commands
      */
 
-    public async compareDiff(initialCommands, updatedCommands) {
+    public async compareDiff(initialCommands : CommandArray[], updatedCommands: CommandArray[]) {
         let result;
-        let diffCommands = [];
-        let errorMessage;
+        let diffCommands :string[] = [];
         initialCommands.forEach(intialCommand => {
             updatedCommands.forEach(updatedcommand => {
                 if (intialCommand.command === updatedcommand.command) {
@@ -35,7 +40,6 @@ export default class Test extends Command {
         }
 
         if (diffCommands.length > 0) {
-            errorMessage = messages.getMessage('deletedFlags');
             console.error(`There have been changes in the flags of the following commands  :  ${diffCommands}. Please check again.`);
         }
 
@@ -47,7 +51,7 @@ export default class Test extends Command {
     }
 
     /** Returns true if there is no difference in the current and updated flags */
-    public diffCommandFlags(oldFlags, newflags, initialCommand) {
+    public diffCommandFlags(oldFlags: string[], newflags: string[], initialCommand: string) {
         let result = false;
         if (newflags.length > oldFlags.length) {
             const difference = newflags.filter(flag => !oldFlags.includes(flag));
@@ -61,7 +65,7 @@ export default class Test extends Command {
     }
 
     /** Returns the difference between initial command list and the updated list */
-    public diffCommands(initialCommands, updatedCommands) {
+    public diffCommands(initialCommands: CommandArray[], updatedCommands : CommandArray[]) {
         return initialCommands.filter(i => !updatedCommands.some(u => u.command === i.command));
     }
 
@@ -69,7 +73,7 @@ export default class Test extends Command {
         const { flags } = this.parse(Test);
         const oldCommandFlags = JSON.parse(fs.readFileSync(flags.goldfile).toString('utf8'));
         const newCommandFlags = this.config.commands;
-        const resultnewCommandFlags = _.sortBy(newCommandFlags, 'id').map(command => {
+        const resultnewCommandFlags : CommandArray[]= _.sortBy(newCommandFlags, 'id').map(command => {
             return {
                 command: command.id,
                 flags: Object.entries(command.flags).map(flagName => flagName[0])
