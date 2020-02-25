@@ -1,0 +1,22 @@
+[
+    {
+        "command": "deprecation:generate",
+        "flags": [
+            "outputdir",
+            "filename"
+        ]
+    },
+    {
+        "command": "deprecation:test",
+        "flags": [
+            "goldfile"
+        ]
+    },
+    {
+        "command": "help",
+        "flags": [
+            "all",
+            "test"  
+        ]
+    }
+]

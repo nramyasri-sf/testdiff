@@ -1,7 +1,7 @@
 
 import { Command, flags } from '@oclif/command';
-import * as fs from 'fs';
 import * as _ from 'lodash';
+import * as fsx from 'fs-extra'
 
 interface CommandArray {
     flags: string[];
@@ -36,16 +36,16 @@ export default class Test extends Command {
 
         /** Check if existant commands have been deleted */
         if (Object.keys(updatedCommands).length < Object.keys(initialCommands).length) {
-            console.error('There have been changes in the flags of the following commands  :' , this.diffCommands(initialCommands, updatedCommands));
+            this.log('There have been changes in the flags of the following commands  :' , this.diffCommands(initialCommands, updatedCommands));
         }
 
         if (diffCommands.length > 0) {
-            console.error(`There have been changes in the flags of the following commands  :  ${diffCommands}. Please check again.`);
+            this.log(`There have been changes in the flags of the following commands  :  ${diffCommands}. Please check again.`);
         }
 
         if (Object.keys(initialCommands).length === Object.keys(updatedCommands).length) {
             if (_.isEqual(initialCommands, updatedCommands) && diffCommands.length === 0) {
-                console.log('No changes have been detected.');
+                this.log('No changes have been detected.');
             }
         }
     }
@@ -71,7 +71,7 @@ export default class Test extends Command {
 
     public async run() {
         const { flags } = this.parse(Test);
-        const oldCommandFlags = JSON.parse(fs.readFileSync(flags.goldfile).toString('utf8'));
+        const oldCommandFlags = JSON.parse(fsx.readFileSync(flags.goldfile).toString('utf8'));
         const newCommandFlags = this.config.commands;
         const resultnewCommandFlags : CommandArray[]= _.sortBy(newCommandFlags, 'id').map(command => {
             return {
