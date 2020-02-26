@@ -7,7 +7,7 @@
         ]
     },
     {
-        "command": "deprecation:test",
+        "command": "deprecation:checkdiff",
         "flags": [
             "goldfile"
         ]
@@ -17,6 +17,11 @@
         "flags": [
             "all",
             "test"  
+        ]
+    },
+    {
+        "command": "testCommand",
+        "flags": [
         ]
     }
 ]

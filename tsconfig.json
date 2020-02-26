@@ -9,6 +9,6 @@
     "target": "es2017"
   },
   "include": [
-    "src/**/*", "test/commands/deprecationGenerate.test.ts"
+    "src/**/*", "test/commands/deprecationGenerate.test.ts", "test/commands/deprecationTest.test.ts"
   ]
 }

@@ -36,7 +36,7 @@ export default class Test extends Command {
 
         /** Check if existant commands have been deleted */
         if (Object.keys(updatedCommands).length < Object.keys(initialCommands).length) {
-            this.log('There have been changes in the flags of the following commands  :' , this.diffCommands(initialCommands, updatedCommands));
+            this.log('These commands have been deleted, please check again   :' , this.diffCommands(initialCommands, updatedCommands));
         }
 
         if (diffCommands.length > 0) {

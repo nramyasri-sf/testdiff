@@ -10,43 +10,14 @@ Tests diff in commands
 
 <!-- toc -->
 * [Usage](#usage)
-* [Commands](#commands)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g testdiff
-$ oclif-example COMMAND
-running command...
-$ oclif-example (-v|--version|version)
-testdiff/0.0.1 darwin-x64 node-v11.10.1
-$ oclif-example --help [COMMAND]
-USAGE
-  $ oclif-example COMMAND
-...
+This plugin is used to ensure there are no violations of the deprecation policy when a new plugin/command has been added to the CLI. 
+
+$ sfdx deprecation:generate - The plugin generates a goldfile that has a list of all the commands on OCLIF. 
+
+$ sfdx deprecation: checkdiff - Once a new command is created it runs a quick comparison between the previous command list and the updated one to make sure there are no violations of the deprecation policy.
 ```
 <!-- usagestop -->
-# Commands
-<!-- commands -->
-* [`oclif-example hello [FILE]`](#oclif-example-hello-file)
-
-## `oclif-example hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ oclif-example hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ oclif-example hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src/commands/hello.ts](https://github.com/nramyasri-sf/testdiff/blob/v0.0.1/src/commands/hello.ts)_
-<!-- commandsstop -->
