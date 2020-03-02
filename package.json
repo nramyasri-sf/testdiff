@@ -3,7 +3,7 @@
   "description": "generates and compares OCLIF plugins snapshot files",
   "version": "0.0.1",
   "author": "Ramyasri @nramyasri-sf",
-  "bugs": "https://github.com/nramyasri-sf/testdiff/issues",
+  "bugs": "https://github.com/oclif/plugin-command-snapshot/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -38,7 +38,7 @@
     "/oclif.manifest.json",
     "/yarn.lock"
   ],
-  "homepage": "https://github.com/nramyasri-sf/testdiff",
+  "homepage": "https://github.com/oclif/plugin-command-snapshot",
   "keywords": [
     "oclif-plugin"
   ],
@@ -55,7 +55,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "nramyasri-sf/testdiff",
+  "repository": "oclif/plugin-command-snapshot",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
