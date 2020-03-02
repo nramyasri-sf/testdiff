@@ -1,13 +1,14 @@
 {
-  "name": "testdiff",
-  "description": "Tests diff in commands",
+  "name": "@oclif/plugin-command-snapshot",
+  "description": "generates and compares OCLIF plugins snapshot files",
   "version": "0.0.1",
   "author": "Ramyasri @nramyasri-sf",
-  "bugs": "https://github.com/nramyasri-sf/testdiff/issues",
+  "bugs": "https://github.com/oclif/plugin-command-snapshot/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@types/fs-extra": "^8.1.0",
+    "chalk": "^3.0.0",
     "sinon": "^9.0.0",
     "tslib": "^1"
   },
@@ -37,7 +38,7 @@
     "/oclif.manifest.json",
     "/yarn.lock"
   ],
-  "homepage": "https://github.com/nramyasri-sf/testdiff",
+  "homepage": "https://github.com/oclif/plugin-command-snapshot",
   "keywords": [
     "oclif-plugin"
   ],
@@ -45,11 +46,16 @@
   "oclif": {
     "commands": "./lib/commands",
     "bin": "oclif-example",
+    "topics": {
+      "snapshot": {
+        "description": "generates and compares OCLIF plugins snapshot files"
+      }
+    },
     "devPlugins": [
       "@oclif/plugin-help"
     ]
   },
-  "repository": "nramyasri-sf/testdiff",
+  "repository": "oclif/plugin-command-snapshot",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
